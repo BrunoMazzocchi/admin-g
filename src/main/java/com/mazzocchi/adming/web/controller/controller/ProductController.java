@@ -13,10 +13,10 @@ import org.springframework.web.servlet.*;
 import java.io.*;
 import java.nio.file.*;
 
-
 @Controller
-@RequestMapping("/web/material")
-public class MaterialController {
+@RequestMapping("/web/product")
+public class ProductController {
+
 
     @Autowired
     private MaterialService materialService;

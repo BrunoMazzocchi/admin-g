@@ -29,6 +29,7 @@
 
     <!-- Template Main CSS File -->
     <link href="../../../static/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../static/vendor/jAlert/src/jAlert.css">
 
     <!-- =======================================================
     * Template Name: NiceAdmin - v2.5.0
@@ -204,8 +205,7 @@
                                         <th style="width: 40%">
                                             <a href="#" th:href="@{/web/material/edit/{id}(id=${material.materialId})}"><i
                                                     class="bi bi-pen"></i></a>
-                                            <a href="#" id="delete"
-                                            ><i
+                                            <a href="#" id="delete" onclick="confirmCancellation(16)"><i
                                                     class="bi bi-trash3"></i>
                                             </a>
                                     </tr>
@@ -314,7 +314,7 @@
                     </div>
 
                     <div class="card-body pb-0">
-                        <h5 class="card-title">Noticias &amp; Camvios <span>| Today</span></h5>
+                        <h5 class="card-title">Noticias &amp; Cambios <span>| Today</span></h5>
 
                         <div class="news">
                             <div class="post-item clearfix">
@@ -373,54 +373,50 @@
 <script src="../../../static/vendor/tinymce/tinymce.min.js"></script>
 <script src="../../../static/vendor/php-email-form/validate.js"></script>
 
+
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+
+<script src="../../../static/vendor/jAlert/src/jAlert.js"></script>
+<script src="../../../static/vendor/jAlert/src/jAlert-functions.js"></script> <!-- COMPLETELY OPTIONAL -->
 <!-- Template Main JS File -->
 <script src="../../../static/js/main.js"></script>
 
-<script>
-    $(document).ready(function () {
-        $("#materials").dataTable({
 
-            "language": {
-                "sProcessing": "Procesando...",
-                "sLengthMenu": "Mostrar _MENU_ registros",
-                "sZeroRecords": "No se encontraron resultados",
-                "sEmptyTable": "Ningún dato disponible en esta tabla",
-                "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                "sInfoPostFix": "",
-                "sSearch": "Buscar:",
-                "sUrl": "",
-                "sInfoThousands": ",",
-                "sLoadingRecords": "Cargando...",
-                "oPaginate": {
-                    "sFirst": "Primero",
-                    "sLast": "Último",
-                    "sNext": "Siguiente",
-                    "sPrevious": "Anterior"
-                },
-                "oAria": {
-                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+
+
+<script>
+    function confirmCancellation(id) {
+        confirm(function(){
+            $.ajax({
+                url: '/api/material/delete/' + id,
+                type: 'DELETE',
+                success: function (result) {
+                    window.location = "/material/all?msg=3";
                 }
-            },
+            });
+        }, function(){
+            successAlert('Completado', 'Se ha cancelado!');
+        }, 'Estas seguro de eliminar el material?');
+    }
 
-            "bAutoWidth": false,
-            "aoColumns": [{"sWidth": "10%"}, {"sWidth": "20%"}, {"sWidth": "40%"}, {"sWidth": "10%"}, {"sWidth": "10%"}, {"sWidth": "10%"}]
-        });
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const msg = urlParams.get('msg')
+
+
+
+    $(document).ready(function () {
+        if (msg === '1') {
+            successAlert('Completado', 'Se ha completado');
+        } else if (msg === '2') {
+            errorAlert('Error', 'No se ha podido completar el proceso');
+        } else if (msg === '3') {
+            successAlert('Completado', 'Se ha eliminado el material');
+        } else if (msg === '4') {
+            errorAlert('Error', 'No se ha eliminado el material');
+        }
     });
-</script>
-
-<script>
-
-
-    $(document).ready(function() {
-        $("#delete").click(function() {
-            $("#verticalycentered").show();
-            return false;
-        });
-    });
-
 
 
 

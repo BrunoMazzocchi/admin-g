@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "jAlert": "^4.9.1",
+    "jquery": "^3.6.3"
+  }
+}
