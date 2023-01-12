@@ -4,20 +4,20 @@ import com.mazzocchi.adming.persistance.enitity.enums.*;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.*;
-
-@Entity
 @Data
-@Table(name = "category")
-public class Category {
+@Entity
+@Table(name = "client_type")
+public class ClientType {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "category_id")
-    private Integer categoryId;
+    @Column(name = "client_type_id")
+    private Integer clientTypeId;
 
     @Column
     private String description;
+
     @Enumerated(EnumType.STRING)
     @Column(length = 60)
-    private CategoryName categoryName;
+    private ClientTypeName clientTypeName;
 }

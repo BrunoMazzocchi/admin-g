@@ -4,20 +4,18 @@ import com.mazzocchi.adming.persistance.enitity.enums.*;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.*;
-
 @Entity
+@Table(name = "unit_measure")
 @Data
-@Table(name = "category")
-public class Category {
+public class UnitMeasure {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "category_id")
-    private Integer categoryId;
+    @Column(name = "unit_measure_id")
+    private Integer unitMeasureId;
 
     @Column
     private String description;
     @Enumerated(EnumType.STRING)
     @Column(length = 60)
-    private CategoryName categoryName;
+    private UnitMeasureName unitMeasureName;
 }

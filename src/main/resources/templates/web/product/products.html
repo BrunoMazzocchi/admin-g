@@ -43,7 +43,7 @@
 
 <!-- ======= Header ======= -->
 <header th:insert="fragments.html :: header"></header>
-<div th:replace="fragments.html :: aside('Todos (Productos)')"></div>
+<div th:replace="fragments.html :: aside('Todos (Producto)')"></div>
 <!-- ======= Sidebar ======= -->
 
 <main id="main" class="main">
@@ -190,20 +190,20 @@
                     <th scope="col" style="width: 10%">#ID</th>
                     <th scope="col" style="width: 20%">Nombre</th>
                     <th scope="col " style="width: 40%">Descripcion</th>
-                    <th scope="col" style="width: 10%">Medida en</th>
-                    <th scope="col" style="width: 10%">Stock</th>
+                    <th scope="col" style="width: 10%">Categoria</th>
+                    <th scope="col" style="width: 10%">Precio</th>
                     <th scope="col" style="width: 10%">Acciones</th>
                   </tr>
                   </thead>
                   <tbody>
-                  <tr th:each="material: ${materials}">
-                    <th style="width: 10%" th:text="${material.materialId}"></th>
-                    <td style="width: 20%" th:text="${material.name}"></td>
-                    <td style="width: 40%" th:text="${material.description}"></td>
-                    <td style="width: 40%" th:text="${material.unitMeasure}"></td>
-                    <td style="width: 40%" th:text="${material.stock}"></td>
+                  <tr th:each="product: ${products}">
+                    <th style="width: 10%" th:text="${product.jewelryId}"></th>
+                    <td style="width: 20%" th:text="${product.name}"></td>
+                    <td style="width: 40%" th:text="${product.description}"></td>
+                    <td style="width: 40%" th:text="${product.categoryId}"></td>
+                    <td style="width: 40%" th:text="${product.price}"></td>
                     <th style="width: 40%">
-                      <a href="#" th:href="@{/web/material/edit/{id}(id=${material.materialId})}"><i
+                      <a href="#" th:href="@{/web/material/edit/{id}(id=${product.jewelryId})}"><i
                               class="bi bi-pen"></i></a>
                       <a href="#" id="delete" onclick="confirmCancellation(16)"><i
                               class="bi bi-trash3"></i>

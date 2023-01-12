@@ -19,23 +19,23 @@ public class ProductController {
 
 
     @Autowired
-    private MaterialService materialService;
+    private JewerlyService jewerlyService;
 
     @GetMapping("/all")
     public ModelAndView getAllMaterials() {
-        ModelAndView modelAndView = new ModelAndView("web/material/materials.html");
-        modelAndView.addObject("materials", materialService.findAll());
+        ModelAndView modelAndView = new ModelAndView("web/product/products.html");
+        modelAndView.addObject("products", jewerlyService.findAll());
         return modelAndView;
     }
 
     @GetMapping("/add")
     public ModelAndView addMaterial() {
-        ModelAndView modelAndView = new ModelAndView("web/material/add.html");
+        ModelAndView modelAndView = new ModelAndView("web/product/add.html");
         return modelAndView;
     }
 
     @RequestMapping(path = "save", consumes = {"multipart/form-data"}, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ModelAndView save(@ModelAttribute("material") MaterialDTO materialDTO, @RequestParam("myImage") MultipartFile multipartFile,
+    public ModelAndView save(@ModelAttribute("material") JewelryDTO jewelryDTO, @RequestParam("myImage") MultipartFile multipartFile,
                              ModelMap model) {
         try {
 
@@ -44,13 +44,13 @@ public class ProductController {
                 String fileName = multipartFile.getOriginalFilename();
                 String uploadDir = "D:\\gadmin-images\\" + fileName;
                 String fileToBeSave = "http://localhost:8000/images/" + fileName;
-                materialDTO.setImage(fileToBeSave);
-                materialService.save(materialDTO);
+                jewelryDTO.setImage(fileToBeSave);
+                jewerlyService.save(jewelryDTO);
                 saveFile(uploadDir, fileName, multipartFile);
             } else {
-                System.out.println(materialDTO.getMaterialId());
-                materialDTO.setImage("");
-                materialService.save(materialDTO);
+                System.out.println(jewelryDTO.getJewelryId());
+                jewelryDTO.setImage("");
+                jewerlyService.save(jewelryDTO);
             }
             return new ModelAndView("redirect:/web/material/all?msg=1", model);
         } catch (Exception error) {
@@ -79,7 +79,7 @@ public class ProductController {
     @GetMapping("/edit/{id}")
     public ModelAndView editMaterial(@PathVariable int id) {
         ModelAndView modelAndView = new ModelAndView("web/material/edit.html");
-        modelAndView.addObject("material", materialService.findById(id));
+        modelAndView.addObject("material", jewerlyService.findById(id));
         return modelAndView;
     }
 

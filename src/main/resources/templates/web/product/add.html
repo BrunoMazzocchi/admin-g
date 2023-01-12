@@ -41,7 +41,7 @@
 
 <!-- ======= Header ======= -->
 <header th:insert="fragments.html :: header"> </header>
-<div th:replace="fragments.html :: aside('Form. Agregar Producto')"> </div>
+<div th:replace="fragments.html :: aside('addProduct')"> </div>
 <!-- ======= Sidebar ======= -->
 
 
@@ -53,8 +53,8 @@
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-        <li class="breadcrumb-item">Materiales</li>
-        <li class="breadcrumb-item active">Agregar material</li>
+        <li class="breadcrumb-item">Producto</li>
+        <li class="breadcrumb-item active">Agregar Producto</li>
       </ol>
     </nav>
   </div><!-- End Page Title -->
@@ -65,10 +65,10 @@
 
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Formulario De Material</h5>
+            <h5 class="card-title">Formulario De Producto</h5>
 
             <!-- General Form Elements -->
-            <form method="post" action="#" th:action="@{/web/material/save}" th:object="${material}" enctype="multipart/form-data">
+            <form method="post" action="#" th:action="@{/web/product/save}" th:object="${product}" enctype="multipart/form-data">
               <div class="row mb-3">
                 <label for="name" class="col-sm-2 col-form-label">Nombre</label>
                 <div class="col-sm-10">
@@ -90,18 +90,18 @@
               <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">Unidad de medida</label>
                 <div class="col-sm-10">
-                  <select class="form-select" aria-label="Default select example" th:name="|unitMeasure|">
+                  <select class="form-select" aria-label="Default select example" th:name="|categoryId|">
                     <option selected>Seleccionar</option>
-                    <option value="KG">Kilogramos</option>
-                    <option value="LT">Litros</option>
-                    <option value="UN">Unidades</option>
+                    <option value="1">Kilogramos</option>
+                    <option value="2">Litros</option>
+                    <option value="3">Unidades</option>
                   </select>
                 </div>
               </div>
               <div class="row mb-3">
-                <label for="stock" class="col-sm-2 col-form-label">Cantidad</label>
+                <label for="stock" class="col-sm-2 col-form-label">Precio</label>
                 <div class="col-sm-10">
-                  <input type="number" id="stock" th:name="|stock|" class="form-control">
+                  <input type="number" id="stock" th:name="|price|" class="form-control">
                 </div>
               </div>
 
@@ -110,8 +110,7 @@
                   <button type="submit" class="btn btn-primary">Agregar</button>
                 </div>
               </div>
-
-            </form><!-- End General Form Elements -->
+            </form>
 
           </div>
         </div>

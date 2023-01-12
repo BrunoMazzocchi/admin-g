@@ -3,6 +3,8 @@ package com.mazzocchi.adming.persistance.enitity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.*;
+
 @Entity
 @Data
 @Table(name = "material")
@@ -23,7 +25,17 @@ public class Material {
     @Column
     private Integer stock;
 
-    @Column
-    private String unitMeasure;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "material_unit_measure",
+            joinColumns = @JoinColumn(name = "material_id"),
+            inverseJoinColumns = @JoinColumn(name = "unit_measure_id"))
+    private Set<UnitMeasure> unitMeasures = new HashSet<>();
+
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "material_state",
+            joinColumns = @JoinColumn(name = "material_id"),
+            inverseJoinColumns = @JoinColumn(name = "state_id"))
+    private Set<State> states = new HashSet<>();
 
 }
