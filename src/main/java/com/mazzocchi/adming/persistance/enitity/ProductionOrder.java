@@ -14,22 +14,6 @@ public class ProductionOrder {
     @Column(name = "production_order_id")
     private Integer productionOrderId;
 
-
-    @Column
-    private String name;
-
-    @Column(name = "created_by")
-    private String createdBy;
-
-    @Column(name = "created_date")
-    private String createdDate;
-
-    @Column(name = "modified_by")
-    private String modifiedBy;
-
-    @Column(name = "modified_date")
-    private String modifiedDate;
-
     @Column
     private String description;
 

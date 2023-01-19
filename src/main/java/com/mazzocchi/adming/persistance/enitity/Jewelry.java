@@ -43,10 +43,4 @@ public class Jewelry {
     )
     private List<Material> materials;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "jewelry_state",
-            joinColumns = @JoinColumn(name = "jewelry_id"),
-            inverseJoinColumns = @JoinColumn(name = "state_id"))
-    private Set<State> states = new HashSet<>();
-
 }

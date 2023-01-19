@@ -26,14 +26,12 @@ public class Client {
     private String phone;
     @Column(name = "address")
     private String address;
+
+    @Column(name = "department")
+    private String department;
+
     @Column(name = "city")
     private String city;
-
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "clients_type",
-            joinColumns = @JoinColumn(name = "client_id"),
-            inverseJoinColumns = @JoinColumn(name = "client_type_id"))
-    private Set<ClientType> clientTypes = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "client_state",
